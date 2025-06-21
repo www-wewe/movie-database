@@ -1,0 +1,93 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+	provider = "prisma-client-js"
+}
+
+datasource db {
+	provider = "postgresql"
+	url      = env("DATABASE_URL")
+}
+
+model Category {
+	id        String    @id @default(uuid())
+	createdAt DateTime  @default(now())
+	deletedAt DateTime?
+
+	name    String  @unique
+	picture String?
+	movies  Movie[]
+}
+
+model Movie {
+	id        String    @id @default(uuid())
+	createdAt DateTime  @default(now())
+	updatedAt DateTime  @updatedAt
+	deletedAt DateTime?
+
+	title            String
+	originalTitle    String
+	description      String
+	language         String
+	director         Director @relation(fields: [directorId], references: [id])
+	directorId       String
+	category         Category @relation(fields: [categoryId], references: [id])
+	categoryId       String
+	duration         Int
+	cast             String
+	picture          String?
+	releaseDate      DateTime
+	reviews          Review[]
+	usersFfavourites User[]   @relation("Favourites")
+	onUsersWatchList User[]   @relation("WatchList")
+}
+
+model Director {
+	id        String    @id @default(uuid())
+	createdAt DateTime  @default(now())
+	updatedAt DateTime  @updatedAt
+	deletedAt DateTime?
+
+	name        String
+	birthDate   DateTime
+	dateOfDeath DateTime?
+	description String
+	picture     String?
+	movies      Movie[]
+}
+
+model Review {
+	id        String    @id @default(uuid())
+	createdAt DateTime  @default(now())
+	deletedAt DateTime?
+
+	content String
+	movie   Movie  @relation(fields: [movieId], references: [id])
+	movieId String
+	user    User   @relation(fields: [userId], references: [id])
+	userId  String
+	rating  Int
+}
+
+model User {
+	id        String    @id @default(uuid())
+	createdAt DateTime  @default(now())
+	updatedAt DateTime  @updatedAt
+	deletedAt DateTime?
+
+	isBlocked      Boolean  @default(false)
+	userName       String   @unique
+	avatar         String?
+	hashedPassword String
+	email          String   @unique
+	role           Role
+	reviews        Review[]
+	favourites     Movie[]  @relation("Favourites")
+	watchList      Movie[]  @relation("WatchList")
+}
+
+enum Role {
+	USER
+	ADMIN
+}
