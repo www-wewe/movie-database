@@ -1,0 +1,133 @@
+:root {
+  /* Colors pallete */
+  --gray-purple-light: #27242C;
+  --purple-light: #3a2d3b;
+  --text-color: #d1d2d3;
+  --gray: #313336;
+
+  --layout-border: var(--gray);
+
+	--sidebar-background-hover: var(--gray-purple-light);
+	--sidebar-background-active: var(--purple-light);
+	--sidebar-font: var(--text-color);
+	--sidebar-icon-background: var(--gray);
+}
+
+.sidebar {
+	display: flex;
+  flex-direction: column;
+  grid-template-areas: "sidebar";
+  background: rgba(0,0,0,1);
+  border-right: 2px solid var(--layout-border);
+  justify-content: space-between;
+}
+
+.sidebar__header {
+	height: 50px;
+  color: var(--sidebar-font);
+  border-bottom: 2px solid var(--layout-border);
+  font-size: 0.6rem;
+  padding: 0 1rem 0 1rem;
+  display: flex;
+  align-items: center;
+  font-weight: var(--fw-bold);
+}
+
+.sidebar__list {
+	margin-top: 0.5rem;
+  padding-inline-start: 0;
+}
+
+.sidebar__item {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  color: var(--sidebar-font);
+  font-size: 0.8rem;
+  list-style: none;
+  padding: 0.2rem 0.8rem;
+}
+
+.sidebar__item:hover {
+  background-color: var(--sidebar-background-hover);
+  cursor: pointer; 
+}
+
+.sidebar__item--active {
+  background-color: var(--sidebar-background-active);
+}
+
+.sidebar__icon {
+  width: 1.2rem;
+  height: 1rem;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar__icon > img {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+.sidebar__icon--new {
+  background-color: var(--sidebar-icon-background);
+  border-radius: var(--br-small);
+}
+
+.sidebar__icon--new > img {
+  width: 0.85rem;
+  height: 0.85rem;
+}
+
+.sidebar__name {
+  margin-left: 0.5rem;
+  color: var(--sidebar-font);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sidebar__logout {
+  width: 12rem;
+  height: 4rem;
+  border-radius: 50rem;
+  background-color: rgb(6, 167, 241);
+  color: white;
+  box-shadow: inset 0 0 2rem 0 rgb(14, 14, 15);
+  font-size: 1.5rem;
+  border: none;
+}
+
+@media screen and (width <= 854px) {
+  .sidebar {
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 4rem;
+  }
+
+  .sidebar__list {
+      display: flex;
+  }
+
+  .sidebar__icon {
+    display: none;
+  }
+
+  .sidebar__item, .sidebar__logout {
+      border: none;
+  }
+
+  .sidebar__logout {
+      width: 8rem;
+      height: 2.5rem;
+      font-size: 1rem;
+  }
+
+  .sidebar__header {
+    display: none;
+  }
+}

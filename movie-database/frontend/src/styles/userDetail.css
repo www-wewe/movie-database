@@ -1,0 +1,58 @@
+.user-page {
+    display: grid;
+    grid-template-rows: 2fr 1fr;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.custom-scrollbar__content {
+    overflow: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.user-page__info {
+    display: grid;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+}
+
+.user-page__picture {
+    width: 30rem;
+    height: 20rem;
+    object-fit: cover;
+}
+
+.user-page__username {
+    color: rgb(6, 167, 241);
+}
+
+.user-page__info h1, .user-page__mail, .user-page__role, div {
+    color: white;
+}
+
+.user-page__button {
+    width: 12rem;
+    height: 4rem;
+    border-radius: 50rem;
+    background-color: rgb(6, 167, 241);
+    color: white;
+    box-shadow: inset 0 0 2rem 0 rgb(14, 14, 15);
+    font-size: 1.5rem;
+    border: none;
+  }
+  
+  @media screen and (width <= 854px) {
+    .user-page {
+        background-color: rgba(0, 0, 0, 0.8);
+        display: grid;
+        grid-template-rows: 1fr 10fr;
+        width: 100vw;
+        height: 100dvh;
+    }
+
+    .user-page__picture {
+        width: 100vw;
+        object-fit: cover;
+    }
+  }
